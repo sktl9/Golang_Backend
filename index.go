@@ -40,6 +40,8 @@ func init() {
 }
 
 func main() {
+
+	r := Router()
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte("Привет, мир!"))
 	})
@@ -52,7 +54,7 @@ func main() {
 
 	// Запуск сервера
 	log.Printf("Сервер запущен на http://localhost:%s", port)
-	if err := http.ListenAndServe(":"+port, nil); err != nil {
+	if err := http.ListenAndServe(":"+port, r); err != nil {
 		log.Fatal(err)
 	}
 }
